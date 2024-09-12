@@ -1,0 +1,17 @@
+/* --------------------------Om innehåll-------------------------- */
+
+.about-page {
+  min-height: 80vh;
+  width: 90%;
+  margin: auto;
+  @include flex(center, center);
+
+  .about-info {
+    width: 50rem;
+    display: block;
+    margin: 0 5rem 0 5rem;
+  }
+  .about-image-container {
+    margin: 0 5rem 0 5rem;
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <title>roha2404 - Moment 3</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="../index.html">
+            <img src="../img/financial_times_logo.png" alt="Hemsidans logga" />
+          </a>
+        </div>
+        <ul>
+          <li><a href="../index.html">Startsida</a></li>
+          <li><a href="../kurser/courses.html">Kurser</a></li>
+          <li class="dropdown">
+            <a href="../bilder/pictures.html">Bilder</a>
+            <ul class="dropdown-content">
+              <li><a href="../bilder/bilder2/pictures2.html">Bilder2</a></li>
+              <li>
+                <a href="../bilder/bilder2/bilder3/pictures3.html">Bilder3</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="active" href="../kontakt/contact.html">Kontakt</a></li>
+          <li><a href="../om/about.html">Om</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="contact-page">
+      <h1>Kontakta mig via e-post eller med nedanstående kontaktformulär</h1>
+      <form>
+        <div class="name-input">
+          <label for="name">Namn:</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Förnamn Efternamn"
+          />
+        </div>
+        <div class="email-input">
+          <label for="email">E-postadress:</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="namn@domän.se"
+          />
+        </div>
+        <div class="profession-input">
+          <label for="yrke">Yrke:</label>
+          <div class="input-wrapper">
+            <select id="yrke">
+              <option value="Webbutvecklare">Webbutvecklare</option>
+              <option value="Webbdesigner">Webbdesigner</option>
+              <option value="Projektledare">Projektledare</option>
+              <option value="Övrigt">Övrigt</option>
+            </select>
+          </div>
+        </div>
+        <div class="newsletter-input">
+          <label for="nyhetsbrev">Nyhetsbrev:</label>
+          <div class="input-wrapper">
+            <input type="checkbox" id="nyhetsbrev" name="nyhetsbrev" />
+          </div>
+        </div>
+        <div class="employee-input">
+          <label>Anställd:</label>
+          <div class="input-wrapper">
+            <div class="radio-buttons">
+              <input type="radio" id="ja" name="ja" />
+              <label for="ja">Ja</label>
+              <input type="radio" id="nej" name="nej" />
+              <label for="nej">Nej</label>
+            </div>
+          </div>
+        </div>
+        <div class="message-input">
+          <label for="message">Meddelande:</label>
+          <textarea id="message" rows="4" cols="50" name="message"> </textarea>
+        </div>
+        <button type="button">Skicka</button>
+        <button type="reset">Nollställ</button>
+      </form>
+    </section>
+    <footer>
+      <div class="footer-wrapper">
+        <h4>Robin Hawiz &copy; Webbutveckling 1 2024-09-06</h4>
+        <div class="social-links">
+          <p><a href="mailto:roha2404@student.miun.se">Maila mig.</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

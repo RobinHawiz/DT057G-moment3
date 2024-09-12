@@ -1,0 +1,82 @@
+/* --------------------------Pictures, Pictures2, Pictures3 innehåll-------------------------- */
+
+body.foto-gallery-body {
+  /* Tar bort overflow-y: hidden från body för att demonstrera att navigationen och footern följer med när man skrollar på webbsidan. */
+  overflow-y: auto;
+}
+
+.foto-gallery {
+  width: 90%;
+  margin: auto;
+  height: 80vh;
+  @include flex(center, space-between);
+
+  .image-wrapper {
+    height: 100%;
+    @include flex(center, space-between);
+    /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+    flex-grow: 1;
+  }
+
+  aside {
+    min-height: 100%;
+    /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+    flex-grow: 1;
+
+    ul {
+      min-height: 80vh;
+      @include flex(center, space-evenly);
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      -webkit-box-orient: vertical;
+      flex-direction: column;
+
+      /* Ändrar utseendet på den länk som användaren befinner sig på. */
+      .active {
+        color: #ffffff;
+        background-color: #515151;
+        padding: 1rem;
+        border-radius: 1rem;
+        /* Ändrar utseendet på den länk som användaren lägger musenpekaren på. */
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    width: 50rem;
+    img {
+      width: 100%;
+      /* https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit */
+      /* På skärmar med lägra upplösning så zoomar bilden in. Detta gör att bilden zoomar ut igen. Bilden beskärs när den är för stor. */
+      object-fit: cover;
+    }
+  }
+}
+
+.gallery-1 .image-container,
+.gallery-2 .image-container {
+  height: 100%;
+  img {
+    /* Vi tilldelar det utrymme som ges av dess förälderelement image-container. Annars tar bilden mer plats. */
+    height: 100%;
+  }
+}
+
+/* Demonstrerar hur position relative och absolute fungerar i relation med varandra. */
+.gallery-2 {
+  position: relative;
+
+  .image-container {
+    position: absolute;
+  }
+  .image-container.g-2-container-1 {
+    right: 0;
+  }
+  .image-container.g-2-container-2 {
+    left: 0;
+  }
+}

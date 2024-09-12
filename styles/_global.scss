@@ -1,0 +1,112 @@
+// Globala variabler
+
+$primary: #333333;
+$button-color: #4e52a3;
+$h1-font: 3.5rem;
+$h2-font: 3rem;
+$h3-font: 2.5rem;
+$primary-font: 2rem;
+
+// Globala funktioner
+
+/* Flexbox documentation: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+@mixin flex($direction, $justify) {
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */
+  display: -webkit-box; /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */
+  display: -moz-box; /* Firefox 2-21 */
+  display: -ms-flexbox; /* Internet explorer 10 */
+  display: -webkit-flex; /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -webkit-box-align: $direction;
+  -moz-align-items: $direction;
+  -ms-align-items: $direction;
+  -webkit-align-items: $direction;
+  align-items: $direction;
+  -webkit-box-pack: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+}
+
+/* Här tar jag bort webbläsarens standardstilar för element */
+* {
+  margin: 0;
+  padding: 0;
+  /* border-box gör att elementet inte får en större width/height när man lägger till padding. */
+  box-sizing: border-box;
+  /* Standardstilen för listor tas bort */
+  list-style: none;
+  /* Tar bort dekorationer som skapas av html-taggar som ex <a> */
+  text-decoration: none;
+}
+
+/* font-size för hela documentet blir 10px, då 16px * 0.625 = 10px*/
+/* 1rem = 10px */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  /* Importerar en font från webben. Länken går att hitta i HTML-dokumentet. */
+  font-family: "Muli", sans-serif;
+  color: $primary;
+  /* Av någon anledning blir det totala utrymmet som jag har givit sidan (10vh för navigationen, 80vh för innehållet, 10vh för footer) lite större än 100vh för skärmar
+  med lägre upplösning. Detta skapar en vertikal skrollbar som jag tar bort genom att dölja innehållet som inte rymms i body. */
+  overflow-y: hidden;
+  /* Position: fixed på navbaren gör att navbaren inte existerar i det normala flödet, vilket gör att resterande element tar platsen som navbaren befinner sig i.
+  Därför gör vi padding-top: 10vh, för att artificiellt ge navbaren sin plats. */
+  padding-top: 10vh;
+  /* Samma förklaring som ovan, fast för footer som befinner sig på botten av sidan. */
+  padding-bottom: 10vh;
+}
+
+h1 {
+  font-size: $h1-font;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: $h2-font;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: $h3-font;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+p {
+  font-size: $primary-font;
+  line-height: 1.5;
+}
+
+a {
+  font-size: $primary-font;
+  color: #515151;
+  padding: 1rem;
+}
+
+li {
+  text-align: center;
+  a {
+    background-color: white;
+  }
+
+  /* Här bestämmer jag länkarnas beteenden. */
+  a {
+    &:visited {
+      color: $button-color;
+    }
+    &:active {
+      transition: all ease 1s;
+      font-size: calc($primary-font * 2);
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

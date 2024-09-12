@@ -1,0 +1,491 @@
+@charset "UTF-8";
+/* Flexbox documentation: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+/* Här tar jag bort webbläsarens standardstilar för element */
+* {
+  margin: 0;
+  padding: 0;
+  /* border-box gör att elementet inte får en större width/height när man lägger till padding. */
+  box-sizing: border-box;
+  /* Standardstilen för listor tas bort */
+  list-style: none;
+  /* Tar bort dekorationer som skapas av html-taggar som ex <a> */
+  text-decoration: none;
+}
+
+/* font-size för hela documentet blir 10px, då 16px * 0.625 = 10px*/
+/* 1rem = 10px */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  /* Importerar en font från webben. Länken går att hitta i HTML-dokumentet. */
+  font-family: "Muli", sans-serif;
+  color: #333333;
+  /* Av någon anledning blir det totala utrymmet som jag har givit sidan (10vh för navigationen, 80vh för innehållet, 10vh för footer) lite större än 100vh för skärmar
+  med lägre upplösning. Detta skapar en vertikal skrollbar som jag tar bort genom att dölja innehållet som inte rymms i body. */
+  overflow-y: hidden;
+  /* Position: fixed på navbaren gör att navbaren inte existerar i det normala flödet, vilket gör att resterande element tar platsen som navbaren befinner sig i.
+  Därför gör vi padding-top: 10vh, för att artificiellt ge navbaren sin plats. */
+  padding-top: 10vh;
+  /* Samma förklaring som ovan, fast för footer som befinner sig på botten av sidan. */
+  padding-bottom: 10vh;
+}
+
+h1 {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+p {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+a {
+  font-size: 2rem;
+  color: #515151;
+  padding: 1rem;
+}
+
+li {
+  text-align: center;
+  /* Här bestämmer jag länkarnas beteenden. */
+}
+li a {
+  background-color: white;
+}
+li a:visited {
+  color: #4e52a3;
+}
+li a:active {
+  transition: all ease 1s;
+  font-size: 4rem;
+}
+li a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------Blogg innehåll-------------------------- */
+.blogg {
+  /* Med min-height skapar jag de generella höjderna av olika element på webbsidan. 
+  Navigationen får höjden min-height: 10vh, varje sida med innehåll får min-height: 80vh samt footern får min-height: 10vh 
+  Tillsamans utgör de 100vh av höjd, vilket utgör hela skärmens höjd.*/
+  min-height: 80vh;
+  /* Med width: 90% och margin: auto skapar jag den generella positioneringen av innehåll på webbsidan.
+  Detta används i navigationen, varje sida med innehåll samt footern. */
+  width: 90%;
+  margin: auto;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+}
+.blogg article {
+  width: 50rem;
+  margin: 0rem 2rem 0rem 2rem;
+}
+.blogg article p {
+  font-size: 2rem;
+  padding: 1rem;
+}
+.blogg .nyhets-bild {
+  width: 100%;
+  /* Centrerar bilderna */
+  /* OBS!!! Detta går att göra med text-align: center men eftersom att jag använder en bild som backgrundsbild på en av elementen
+  i nyhetsbilderna så är jag tvungen att använda mig av flexbox*/
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: normal;
+  -ms-align-items: normal;
+  align-items: normal;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.blogg .nyhets-bild img {
+  width: 20rem;
+  height: 12rem;
+}
+.blogg .nyhets-bild .img {
+  width: 20rem;
+  height: 12rem;
+  background-image: url("../img/ugnsbakad-torsk-med-citron-och-dillsas.jpg");
+  /* Bilden anpassar sin storlek till de givna dimensionerna av elementet */
+  background-size: 100%;
+}
+
+/* --------------------------Navigationen-------------------------- */
+header {
+  min-height: 10vh;
+  width: 100%;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: normal;
+  -ms-justify-content: normal;
+  justify-content: normal;
+  position: fixed;
+  top: 0;
+  background: white;
+  /* Navbaren ska inte skymmas av andra ellement, utan istället visas över andra element. */
+  z-index: 1;
+}
+header nav {
+  min-height: 100%;
+  width: 90%;
+  margin: auto;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: normal;
+  -ms-align-items: normal;
+  align-items: normal;
+  -moz-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+}
+header nav ul {
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+  /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+  flex-grow: 2;
+  /* Ändrar utseendet på den länk som användaren befinner sig på. */
+}
+header nav ul .active {
+  color: #ffffff;
+  background-color: #515151;
+  padding: 1rem;
+  border-radius: 1rem;
+  /* Ändrar utseendet på den länk som användaren lägger musenpekaren på. */
+}
+header nav ul .active:hover {
+  text-decoration: underline;
+}
+header nav ul .dropdown {
+  position: relative;
+}
+header nav ul .dropdown .dropdown-content {
+  position: absolute;
+  padding-top: 1.5rem;
+  /* Länkarna har padding 1rem, så jag knuffar tillbaka dem till dit jag vill ha dem. */
+  right: -1rem;
+  /* Vi gömmer innehållet. */
+  display: none;
+}
+header nav ul .dropdown .dropdown-content li {
+  padding: 1rem 0 1rem 0;
+}
+header nav ul .dropdown .dropdown-content li:hover {
+  text-decoration: underline;
+}
+header nav ul .dropdown:hover .dropdown-content {
+  /* Vi visar innehållet när användaren har muspekaren på bild länken. */
+  display: block;
+}
+header .logo {
+  /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+  flex-grow: 1;
+  text-align: center;
+}
+header .logo img {
+  height: 5rem;
+  width: 5.5rem;
+}
+
+/* --------------------------Footer-------------------------- */
+footer {
+  min-height: 10vh;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: normal;
+  -ms-align-items: normal;
+  align-items: normal;
+  -moz-justify-content: normal;
+  -ms-justify-content: normal;
+  justify-content: normal;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: white;
+}
+footer .footer-wrapper {
+  width: 90%;
+  margin: auto;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+}
+footer h4 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: inherit;
+}
+footer .social-links a {
+  text-align: center;
+  font-size: 2rem;
+}
+footer .social-links a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------Courses innehåll-------------------------- */
+.courses-page {
+  min-height: 80vh;
+  width: 90%;
+  margin: auto;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.courses-page table {
+  /* Gör att cellerna delar kanter med varandra. */
+  border-collapse: collapse;
+}
+.courses-page table th,
+.courses-page table td {
+  border: 0.3rem solid rgb(92, 164, 189);
+  padding: 0.8rem 1rem;
+  font-size: 2rem;
+}
+.courses-page table th {
+  text-align: center;
+}
+.courses-page table tfoot th {
+  text-align: left;
+}
+
+/* --------------------------Pictures, Pictures2, Pictures3 innehåll-------------------------- */
+body.foto-gallery-body {
+  /* Tar bort overflow-y: hidden från body för att demonstrera att navigationen och footern följer med när man skrollar på webbsidan. */
+  overflow-y: auto;
+}
+
+.foto-gallery {
+  width: 90%;
+  margin: auto;
+  height: 80vh;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+}
+.foto-gallery .image-wrapper {
+  height: 100%;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+  flex-grow: 1;
+}
+.foto-gallery aside {
+  min-height: 100%;
+  /* Flex-grow bestämmer hur mycket utrymme som tilldelas ett element */
+  flex-grow: 1;
+}
+.foto-gallery aside ul {
+  min-height: 80vh;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: space-evenly;
+  -ms-justify-content: space-evenly;
+  justify-content: space-evenly;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  /* Ändrar utseendet på den länk som användaren befinner sig på. */
+}
+.foto-gallery aside ul .active {
+  color: #ffffff;
+  background-color: #515151;
+  padding: 1rem;
+  border-radius: 1rem;
+  /* Ändrar utseendet på den länk som användaren lägger musenpekaren på. */
+}
+.foto-gallery aside ul .active:hover {
+  text-decoration: underline;
+}
+.foto-gallery .image-container {
+  width: 50rem;
+}
+.foto-gallery .image-container img {
+  width: 100%;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit */
+  /* På skärmar med lägra upplösning så zoomar bilden in. Detta gör att bilden zoomar ut igen. Bilden beskärs när den är för stor. */
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.gallery-1 .image-container,
+.gallery-2 .image-container {
+  height: 100%;
+}
+.gallery-1 .image-container img,
+.gallery-2 .image-container img {
+  /* Vi tilldelar det utrymme som ges av dess förälderelement image-container. Annars tar bilden mer plats. */
+  height: 100%;
+}
+
+/* Demonstrerar hur position relative och absolute fungerar i relation med varandra. */
+.gallery-2 {
+  position: relative;
+}
+.gallery-2 .image-container {
+  position: absolute;
+}
+.gallery-2 .image-container.g-2-container-1 {
+  right: 0;
+}
+.gallery-2 .image-container.g-2-container-2 {
+  left: 0;
+}
+
+/* --------------------------Contact innehåll-------------------------- */
+.contact-page {
+  width: 90%;
+  margin: auto;
+  min-height: 80vh;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  /* Nödvändiga prefixes som krävs för att flex-direction ska fungera på äldre versioner av webbläsare
+  https://caniuse.com/?search=flex%20direction */
+  -moz-flex-direction: column;
+  flex-direction: column;
+}
+.contact-page h1 {
+  margin-bottom: 3rem;
+}
+.contact-page form {
+  min-height: 30rem;
+  min-width: 50rem;
+  background: rgb(92, 164, 189);
+  padding: 2rem;
+  border-radius: 2rem;
+  /* Jag ville ge "inputs" (select-elementet, nyhetsbrevets input och radiobuttons) samma x-koordinater som den vänstra kanten av name- och email-input. 
+  Detta gör jag genom att först lägga "inputs" i ett element med namnet input-wrapper, vars bredd är 25rem (samma bredd som name- och email-input har).
+  Nu när alla element ligger i input-wrapper, så kan jag använda float:left; för att positionera innehållet i input-wrapper åt vänster, vilket ger effekten
+  som jag var ute efter.
+  */
+}
+.contact-page form label {
+  font-size: 2rem;
+}
+.contact-page form input {
+  font-family: "Muli", sans-serif;
+  color: #333333;
+  font-size: 2rem;
+}
+.contact-page form button {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  background: #4e52a3;
+  border: none;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+.contact-page form button:hover {
+  background: rgb(92, 164, 189);
+}
+.contact-page form .name-input input,
+.contact-page form .email-input input {
+  width: 25rem;
+}
+.contact-page form .input-wrapper {
+  width: 25rem;
+}
+.contact-page form .radio-buttons {
+  float: left;
+}
+.contact-page form .newsletter-input input {
+  float: left;
+}
+.contact-page form .name-input,
+.contact-page form .email-input,
+.contact-page form .profession-input,
+.contact-page form .newsletter-input,
+.contact-page form .employee-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 1rem 0;
+}
+.contact-page form .message-input {
+  margin: 1rem 0 1rem 0;
+}
+.contact-page form .message-input label {
+  display: block;
+}
+
+/* --------------------------Om innehåll-------------------------- */
+.about-page {
+  min-height: 80vh;
+  width: 90%;
+  margin: auto;
+  /* De prefixes som man behöver använda för äldre versioner av webbläsare kan hittas här: https://caniuse.com/?search=flexbox */ /* Chrome 4-20, Safari 3.1-6, Safari på iOS 3.2-6.1, Androids webbläsare 2.1-4.3 */ /* Firefox 2-21 */ /* Internet explorer 10 */ /* Chrome 21-28, Safari 6.1-8, Opera 15-16, Safari på iOS 7-8.4 */
+  display: flex;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+.about-page .about-info {
+  width: 50rem;
+  display: block;
+  margin: 0 5rem 0 5rem;
+}
+.about-page .about-image-container {
+  margin: 0 5rem 0 5rem;
+}/*# sourceMappingURL=style.css.map */

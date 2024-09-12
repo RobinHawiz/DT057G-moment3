@@ -1,0 +1,44 @@
+/* --------------------------Blogg innehåll-------------------------- */
+
+.blogg {
+  /* Med min-height skapar jag de generella höjderna av olika element på webbsidan. 
+Navigationen får höjden min-height: 10vh, varje sida med innehåll får min-height: 80vh samt footern får min-height: 10vh 
+Tillsamans utgör de 100vh av höjd, vilket utgör hela skärmens höjd.*/
+  min-height: 80vh;
+  /* Med width: 90% och margin: auto skapar jag den generella positioneringen av innehåll på webbsidan.
+  Detta används i navigationen, varje sida med innehåll samt footern. */
+  width: 90%;
+  margin: auto;
+  @include flex(center, space-evenly);
+
+  article {
+    width: 50rem;
+    margin: 0rem 2rem 0rem 2rem;
+
+    p {
+      font-size: 2rem;
+      padding: 1rem;
+    }
+  }
+  .nyhets-bild {
+    width: 100%;
+
+    /* Centrerar bilderna */
+    /* OBS!!! Detta går att göra med text-align: center men eftersom att jag använder en bild som backgrundsbild på en av elementen
+    i nyhetsbilderna så är jag tvungen att använda mig av flexbox*/
+    @include flex(normal, center);
+
+    img {
+      width: 20rem;
+      height: 12rem;
+    }
+
+    .img {
+      width: 20rem;
+      height: 12rem;
+      background-image: url("../img/ugnsbakad-torsk-med-citron-och-dillsas.jpg");
+      /* Bilden anpassar sin storlek till de givna dimensionerna av elementet */
+      background-size: 100%;
+    }
+  }
+}

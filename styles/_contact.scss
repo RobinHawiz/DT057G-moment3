@@ -1,0 +1,90 @@
+/* --------------------------Contact innehåll-------------------------- */
+
+.contact-page {
+  width: 90%;
+  margin: auto;
+  min-height: 80vh;
+  @include flex(center, center);
+  /* Nödvändiga prefixes som krävs för att flex-direction ska fungera på äldre versioner av webbläsare
+  https://caniuse.com/?search=flex%20direction */
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+
+  h1 {
+    margin-bottom: 3rem;
+  }
+
+  form {
+    min-height: 30rem;
+    min-width: 50rem;
+    background: rgb(92, 164, 189);
+    padding: 2rem;
+    border-radius: 2rem;
+
+    label {
+      font-size: 2rem;
+    }
+
+    input {
+      font-family: "Muli", sans-serif;
+      color: $primary;
+      font-size: 2rem;
+    }
+
+    button {
+      font-size: 1.5rem;
+      padding: 1rem 3rem;
+      background: $button-color;
+      border: none;
+      transition: all 1s ease;
+      cursor: pointer;
+      &:hover {
+        background: rgb(92, 164, 189);
+      }
+    }
+
+    .name-input input,
+    .email-input input {
+      width: 25rem;
+    }
+
+    /* Jag ville ge "inputs" (select-elementet, nyhetsbrevets input och radiobuttons) samma x-koordinater som den vänstra kanten av name- och email-input. 
+    Detta gör jag genom att först lägga "inputs" i ett element med namnet input-wrapper, vars bredd är 25rem (samma bredd som name- och email-input har).
+    Nu när alla element ligger i input-wrapper, så kan jag använda float:left; för att positionera innehållet i input-wrapper åt vänster, vilket ger effekten
+    som jag var ute efter.
+    */
+    .input-wrapper {
+      width: 25rem;
+    }
+
+    .radio-buttons {
+      float: left;
+    }
+
+    .newsletter-input input {
+      float: left;
+    }
+
+    .name-input,
+    .email-input,
+    .profession-input,
+    .newsletter-input,
+    .employee-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1rem 0 1rem 0;
+    }
+
+    .message-input {
+      margin: 1rem 0 1rem 0;
+
+      label {
+        display: block;
+      }
+    }
+  }
+}

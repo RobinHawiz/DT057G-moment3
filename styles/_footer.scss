@@ -1,0 +1,29 @@
+/* --------------------------Footer-------------------------- */
+
+footer {
+  min-height: 10vh;
+  @include flex(normal, normal);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: white;
+
+  .footer-wrapper {
+    width: 90%;
+    margin: auto;
+    @include flex(center, space-evenly);
+  }
+  h4 {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: inherit;
+  }
+
+  .social-links a {
+    text-align: center;
+    font-size: 2rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

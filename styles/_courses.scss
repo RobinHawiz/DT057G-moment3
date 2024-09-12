@@ -1,0 +1,28 @@
+/* --------------------------Courses innehåll-------------------------- */
+
+.courses-page {
+  min-height: 80vh;
+  width: 90%;
+  margin: auto;
+  @include flex(center, center);
+
+  table {
+    /* Gör att cellerna delar kanter med varandra. */
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 0.3rem solid rgb(92, 164, 189);
+      padding: 0.8rem 1rem;
+      font-size: 2rem;
+    }
+
+    th {
+      text-align: center;
+    }
+
+    tfoot th {
+      text-align: left;
+    }
+  }
+}
